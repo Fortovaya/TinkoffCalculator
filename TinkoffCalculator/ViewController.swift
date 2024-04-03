@@ -9,7 +9,6 @@ import UIKit
 
 enum CalculationError: Error {
     case dividedByZero
-    case multiplyByZero
 }
 
 enum Operation: String {
@@ -22,9 +21,7 @@ enum Operation: String {
         switch self {
         case .add: number1 + number2
         case .substract: number1 - number2
-        case.multiply: 
-            if number2 == 0 { throw CalculationError.multiplyByZero} else {
-                number1 * number2 }
+        case.multiply: number1 * number2
         case .divide:
             if number2 == 0 { throw CalculationError.dividedByZero} else {
                 number1 / number2 }
@@ -65,6 +62,8 @@ class ViewController: UIViewController {
     
     @IBAction func buttonPressed(_ sender: UIButton) {
         
+        if label.text == "Ошибка"{ resetLabelText()}
+        
         guard let buttonText = sender.currentTitle else { return }
         
         if buttonText == "," && label.text?.contains(",") == true { return }
@@ -78,6 +77,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func operationButtonPressed(_ sender: UIButton) {
+        if label.text == "Ошибка" {resetLabelText()}
         
         guard let buttonText = sender.currentTitle,
               let buttonOperation = Operation(rawValue: buttonText)
