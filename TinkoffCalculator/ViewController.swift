@@ -19,13 +19,15 @@ enum Operation: String {
     
     func calculate(_ number1: Double, _ number2: Double) throws -> Double {
         switch self {
-        case .add: number1 + number2
-        case .substract: number1 - number2
-        case.multiply: number1 * number2
-        case .divide:
-            if number2 == 0 { throw CalculationError.dividedByZero} else {
-                number1 / number2 }
-        }
+            case .add: return number1 + number2
+            case .substract: return number1 - number2
+            case .multiply: return number1 * number2
+            case .divide:
+                if number2 == 0 {
+                    throw CalculationError.dividedByZero
+                }
+                return number1 / number2
+            }
     }
 }
 
@@ -61,10 +63,9 @@ class ViewController: UIViewController {
 // MARK: - метод нажатия кнопок и отражение в label
     
     @IBAction func buttonPressed(_ sender: UIButton) {
-        
-        if label.text == "Ошибка"{ resetLabelText()}
-        
+
         guard let buttonText = sender.currentTitle else { return }
+        if label.text == "Ошибка"{ resetLabelText()}
         
         if buttonText == "," && label.text?.contains(",") == true { return }
         
@@ -73,8 +74,9 @@ class ViewController: UIViewController {
         } else {
             // добавляем символы к уже имеющемуся тексту
             label.text?.append(buttonText) }
-        
     }
+    
+    
     
     @IBAction func operationButtonPressed(_ sender: UIButton) {
         if label.text == "Ошибка" {resetLabelText()}
@@ -128,7 +130,7 @@ class ViewController: UIViewController {
         for index in stride(from: 1, to: calculationHistory.count - 1, by:2) {
             guard case .operation(let operation) = calculationHistory[index],
                   case .number(let number) = calculationHistory[index + 1]
-            else {break}
+            else { break }
             
             currentResult = try operation.calculate(currentResult, number)
         }
@@ -136,8 +138,6 @@ class ViewController: UIViewController {
         return currentResult
         
     }
-    
-    
 
 }
 
