@@ -35,4 +35,15 @@ class CalculationsListViewController: UIViewController {
     }
     
     
+    
+    @IBAction func dissmisVC(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    // отражение Navigation Bar
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
 }

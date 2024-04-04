@@ -40,8 +40,10 @@ class ViewController: UIViewController {
 
     
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var historyButton: UIButton!
     
     var calculationHistory: [CalculationHistoryItem] = []
+    private var noCalculate = "NoData"
     
     lazy var numberFormatter: NumberFormatter = {
         let numberFormatter = NumberFormatter()
@@ -56,7 +58,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+        historyButton.accessibilityIdentifier = "historyButton"
         resetLabelText()
     }
 
@@ -140,21 +142,23 @@ class ViewController: UIViewController {
         return currentResult
         
     }
-    
-    // Go to back UIStoryboard
-    @IBAction func unwindAction(unwindSegue: UIStoryboardSegue){
+
+    // Передача данных по коду на другой Storyboard
+    @IBAction func showCalculationsList(_ sender: Any) {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let calculationsListVC = sb.instantiateViewController(identifier: "CalculationsListViewController")
+        if let vc = calculationsListVC as? CalculationsListViewController {
+            if calculationHistory.count == 0 {vc.result = noCalculate} else {
+                            vc.result = label.text}}
         
+        navigationController?.pushViewController(calculationsListVC, animated: true)
     }
     
-    // Передача данных по Segue на другой Storyboard
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "CALCULATIONS_LIST",
-                let calculationsListVC = segue.destination as? CalculationsListViewController else { return }
-        
-        calculationsListVC.result = label.text
+    // скрытие Navigation Bar
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
-    
 
 }
 
