@@ -69,11 +69,13 @@ class ViewController: UIViewController {
         
         if buttonText == "," && label.text?.contains(",") == true { return }
         
-        if label.text == "0" {
+        if label.text == "0" && buttonText != ","  {
             label.text = buttonText
         } else {
             // добавляем символы к уже имеющемуся тексту
             label.text?.append(buttonText) }
+        
+        print(buttonText)
     }
     
     
