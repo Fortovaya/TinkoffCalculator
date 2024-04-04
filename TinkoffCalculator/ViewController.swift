@@ -140,6 +140,21 @@ class ViewController: UIViewController {
         return currentResult
         
     }
+    
+    // Go to back UIStoryboard
+    @IBAction func unwindAction(unwindSegue: UIStoryboardSegue){
+        
+    }
+    
+    // Передача данных по Segue на другой Storyboard
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "CALCULATIONS_LIST",
+                let calculationsListVC = segue.destination as? CalculationsListViewController else { return }
+        
+        calculationsListVC.result = label.text
+    }
+    
 
 }
 

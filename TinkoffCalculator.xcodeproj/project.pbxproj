@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C21A1CC2BBF1A1300CC85E2 /* CalculationsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C21A1CB2BBF1A1300CC85E2 /* CalculationsListViewController.swift */; };
 		2CB82C682BBD9CD600DB7B07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB82C672BBD9CD600DB7B07 /* AppDelegate.swift */; };
 		2CB82C6A2BBD9CD600DB7B07 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB82C692BBD9CD600DB7B07 /* SceneDelegate.swift */; };
 		2CB82C6C2BBD9CD600DB7B07 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB82C6B2BBD9CD600DB7B07 /* ViewController.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C21A1CB2BBF1A1300CC85E2 /* CalculationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationsListViewController.swift; sourceTree = "<group>"; };
 		2CB82C642BBD9CD600DB7B07 /* TinkoffCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinkoffCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CB82C672BBD9CD600DB7B07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CB82C692BBD9CD600DB7B07 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				2CB82C702BBD9CD800DB7B07 /* Assets.xcassets */,
 				2CB82C722BBD9CD800DB7B07 /* LaunchScreen.storyboard */,
 				2CB82C752BBD9CD800DB7B07 /* Info.plist */,
+				2C21A1CB2BBF1A1300CC85E2 /* CalculationsListViewController.swift */,
 			);
 			path = TinkoffCalculator;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C21A1CC2BBF1A1300CC85E2 /* CalculationsListViewController.swift in Sources */,
 				2CB82C6C2BBD9CD600DB7B07 /* ViewController.swift in Sources */,
 				2CB82C682BBD9CD600DB7B07 /* AppDelegate.swift in Sources */,
 				2CB82C6A2BBD9CD600DB7B07 /* SceneDelegate.swift in Sources */,
