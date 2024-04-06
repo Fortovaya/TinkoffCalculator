@@ -43,7 +43,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var historyButton: UIButton!
     
     var calculationHistory: [CalculationHistoryItem] = []
-    private var noCalculate = "NoData"
+    var pressedCount = 0
+    
     
     lazy var numberFormatter: NumberFormatter = {
         let numberFormatter = NumberFormatter()
@@ -75,7 +76,9 @@ class ViewController: UIViewController {
             label.text = buttonText
         } else {
             // добавляем символы к уже имеющемуся тексту
-            label.text?.append(buttonText) }
+        label.text?.append(buttonText) }
+        
+        pressedCount += 1
         
         print(buttonText)
     }
@@ -108,6 +111,7 @@ class ViewController: UIViewController {
     @IBAction func clearButtonPressed(){
         calculationHistory.removeAll()
         resetLabelText()
+        pressedCount = 0
     }
     
     @IBAction func calculateButtonPressed(){
@@ -148,9 +152,11 @@ class ViewController: UIViewController {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let calculationsListVC = sb.instantiateViewController(identifier: "CalculationsListViewController")
         if let vc = calculationsListVC as? CalculationsListViewController {
-            if calculationHistory.count == 0 {vc.result = noCalculate} else {
-                            vc.result = label.text}}
-        
+//            vc.result = label.text
+            if pressedCount >= 1 {
+                vc.result = label.text
+            } else { vc.result = "NoData"}
+        }
         navigationController?.pushViewController(calculationsListVC, animated: true)
     }
     
