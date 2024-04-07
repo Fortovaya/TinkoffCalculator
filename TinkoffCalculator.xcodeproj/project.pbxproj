@@ -16,6 +16,9 @@
 		2C8E965A2BC2A82100D7D00D /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C8E96592BC2A82100D7D00D /* HistoryTableViewCell.xib */; };
 		2C8E965B2BC2A82100D7D00D /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C8E96592BC2A82100D7D00D /* HistoryTableViewCell.xib */; };
 		2C8E965C2BC2A82100D7D00D /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C8E96592BC2A82100D7D00D /* HistoryTableViewCell.xib */; };
+		2C8E965F2BC2BCE200D7D00D /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8E965E2BC2BCE200D7D00D /* Storage.swift */; };
+		2C8E96602BC2BCE200D7D00D /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8E965E2BC2BCE200D7D00D /* Storage.swift */; };
+		2C8E96612BC2BCE200D7D00D /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8E965E2BC2BCE200D7D00D /* Storage.swift */; };
 		2CB82C682BBD9CD600DB7B07 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB82C672BBD9CD600DB7B07 /* AppDelegate.swift */; };
 		2CB82C6A2BBD9CD600DB7B07 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB82C692BBD9CD600DB7B07 /* SceneDelegate.swift */; };
 		2CB82C6C2BBD9CD600DB7B07 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CB82C6B2BBD9CD600DB7B07 /* ViewController.swift */; };
@@ -48,6 +51,7 @@
 		2C21A1CB2BBF1A1300CC85E2 /* CalculationsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationsListViewController.swift; sourceTree = "<group>"; };
 		2C8E96552BC2A67F00D7D00D /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		2C8E96592BC2A82100D7D00D /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
+		2C8E965E2BC2BCE200D7D00D /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		2CB82C642BBD9CD600DB7B07 /* TinkoffCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TinkoffCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CB82C672BBD9CD600DB7B07 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2CB82C692BBD9CD600DB7B07 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +102,14 @@
 			path = History;
 			sourceTree = "<group>";
 		};
+		2C8E965D2BC2BC7000D7D00D /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				2C8E965E2BC2BCE200D7D00D /* Storage.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
 		2CB82C5B2BBD9CD600DB7B07 = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +133,7 @@
 		2CB82C662BBD9CD600DB7B07 /* TinkoffCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				2C8E965D2BC2BC7000D7D00D /* Storage */,
 				2C8E96522BC2A63E00D7D00D /* History */,
 				2CB82C672BBD9CD600DB7B07 /* AppDelegate.swift */,
 				2CB82C692BBD9CD600DB7B07 /* SceneDelegate.swift */,
@@ -289,6 +302,7 @@
 				2CB82C682BBD9CD600DB7B07 /* AppDelegate.swift in Sources */,
 				2CB82C6A2BBD9CD600DB7B07 /* SceneDelegate.swift in Sources */,
 				2C8E96562BC2A67F00D7D00D /* HistoryTableViewCell.swift in Sources */,
+				2C8E965F2BC2BCE200D7D00D /* Storage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C8E96572BC2A67F00D7D00D /* HistoryTableViewCell.swift in Sources */,
+				2C8E96602BC2BCE200D7D00D /* Storage.swift in Sources */,
 				2C8E96532BC2A65600D7D00D /* CalculationsListViewController.swift in Sources */,
 				2CB82C7F2BBD9CD800DB7B07 /* TinkoffCalculatorTests.swift in Sources */,
 			);
@@ -310,6 +325,7 @@
 				2CB82C8B2BBD9CD800DB7B07 /* TinkoffCalculatorUITestsLaunchTests.swift in Sources */,
 				2C8E96582BC2A67F00D7D00D /* HistoryTableViewCell.swift in Sources */,
 				2CB82C892BBD9CD800DB7B07 /* TinkoffCalculatorUITests.swift in Sources */,
+				2C8E96612BC2BCE200D7D00D /* Storage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -44,7 +44,9 @@ class ViewController: UIViewController {
     
     var calculationHistory: [CalculationHistoryItem] = []
     var pressedCount = 0
-    var calculations: [(expression: [CalculationHistoryItem], result: Double)] = []
+    
+    var calculations: [Calculation] = []
+    let calculationHistoryStorage = CalculationHistoryStorage()
     
     
     lazy var numberFormatter: NumberFormatter = {
@@ -62,6 +64,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         historyButton.accessibilityIdentifier = "historyButton"
         resetLabelText()
+        calculations = calculationHistoryStorage.loadHistory()
     }
 
 // MARK: - метод нажатия кнопок и отражение в label
@@ -125,7 +128,9 @@ class ViewController: UIViewController {
         do {
             let result = try calculate()
             label.text = numberFormatter.string(from: NSNumber(value: result))
-            calculations.append((calculationHistory, result))
+            let newCalculation = Calculation(expression: calculationHistory, result: result, date: Date())
+            calculations.append(newCalculation)
+            calculationHistoryStorage.setHistory(calculation: calculations)
         } catch {
             label.text = "Ошибка"
         }
@@ -154,8 +159,7 @@ class ViewController: UIViewController {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let calculationsListVC = sb.instantiateViewController(identifier: "CalculationsListViewController")
         if let vc = calculationsListVC as? CalculationsListViewController {
-//            vc.result = label.text
-                vc.calculations = calculations
+            vc.calculations = calculations
         }
         navigationController?.pushViewController(calculationsListVC, animated: true)
     }

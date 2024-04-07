@@ -13,7 +13,7 @@ class CalculationsListViewController: UIViewController {
     @IBOutlet weak var calculationLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
-    var calculations: [(expression: [CalculationHistoryItem], result: Double)] = []
+    var calculations: [Calculation] = []
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
@@ -39,8 +39,9 @@ class CalculationsListViewController: UIViewController {
         tableView.backgroundColor = UIColor.systemGray5 // цвет фона tableView
         let tableHeaderView = UIView()
         tableHeaderView.frame = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 30) // отступ сверху tableView
-        tableView.tableHeaderView = tableHeaderView */
+        tableView.tableHeaderView = tableHeaderView
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1)) // заполнение сплошным цветом tableView внизу
+   */
         
         let nib = UINib(nibName: "HistoryTableViewCell", bundle: nil) // регистрируем ячейку
         tableView.register(nib, forCellReuseIdentifier: "HistoryTableViewCell") // с указанным идентификатором
@@ -83,15 +84,17 @@ extension CalculationsListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+       
         let headerView = UIView()
         headerView.backgroundColor = UIColor.lightGray
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy"
-        let currentDate = dateFormatter.string(from: Date())
+//        let currentDate = dateFormatter.string(from: Date())
         
         let label = UILabel()
-        label.text = "Дата: \(currentDate)"
+//        label.text = "Дата: \(currentDate)"
+        label.text = dateFormatter.string(from: calculations[section].date)
         label.textColor = UIColor.white
         
         headerView.addSubview(label)
@@ -108,12 +111,18 @@ extension CalculationsListViewController: UITableViewDelegate {
 extension CalculationsListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return calculations.count
+        return 1
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         return calculations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryTableViewCell", for: indexPath) as! HistoryTableViewCell
-        let historyItem = calculations[indexPath.row]
+//        let historyItem = calculations[indexPath.row]
+        let historyItem = calculations[indexPath.section]
         cell.configure(with: expressionToString(historyItem.expression), result: String(historyItem.result))
         
         return cell
