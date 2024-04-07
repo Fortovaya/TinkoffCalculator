@@ -48,6 +48,8 @@ class ViewController: UIViewController {
     var calculations: [Calculation] = []
     let calculationHistoryStorage = CalculationHistoryStorage()
     
+    private var piValue: Double = 0.0
+    
     
     lazy var numberFormatter: NumberFormatter = {
         let numberFormatter = NumberFormatter()
@@ -55,6 +57,13 @@ class ViewController: UIViewController {
         numberFormatter.usesGroupingSeparator = false
         numberFormatter.locale = Locale(identifier: "ru_Ru")
         numberFormatter.numberStyle = .decimal
+        
+        let screenWidth = UIScreen.main.bounds.width
+        if screenWidth < 400 {
+            numberFormatter.maximumFractionDigits = 8
+        } else {
+            numberFormatter.maximumFractionDigits = 15
+        }
         
         return numberFormatter
     }()
@@ -112,6 +121,28 @@ class ViewController: UIViewController {
         label.text = "0"
     }
     
+    private func calculatePiWithPrecision(_ precision: Int, completion: @escaping (Double) -> Void) {
+        DispatchQueue.global(qos: .userInitiated).async {
+            let pi = self.calculatePi(precision)
+            self.piValue = pi
+            DispatchQueue.main.async {
+                completion(pi)
+            }
+        }
+    }
+    
+    private func calculatePi(_ precision: Int) -> Double {
+        var piValue = 0.0
+        var denominator = 1.0
+        var sign = 1.0
+        for _ in 0..<precision {
+            piValue += sign * (1.0 / denominator)
+            denominator += 2.0
+            sign *= -1.0
+        }
+        return piValue * 4.0
+    }
+    
     @IBAction func clearButtonPressed(){
         calculationHistory.removeAll()
         resetLabelText()
@@ -152,6 +183,14 @@ class ViewController: UIViewController {
         
         return currentResult
         
+    }
+    
+    @IBAction func piButtonPressed(_ sender: UIButton) {
+        calculatePiWithPrecision(10000000) { pi in
+            DispatchQueue.main.async {
+                self.label.text = self.numberFormatter.string(from: NSNumber(value: pi))
+            }
+        }
     }
 
     // Передача данных по коду на другой Storyboard
