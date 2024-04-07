@@ -321,41 +321,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mPj-7h-2N5">
-                                <rect key="frame" x="196.66666666666666" y="426" width="0.0" height="0.0"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Pc-en-vDf">
-                                <rect key="frame" x="151.33333333333334" y="476.33333333333331" width="90.666666666666657" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Закрыть"/>
-                                <connections>
-                                    <action selector="dissmisVC:" destination="rZG-Me-PnL" eventType="touchUpInside" id="LOZ-dA-c2C"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Результат" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n9m-Nv-fAy">
-                                <rect key="frame" x="157" y="357.33333333333331" width="79" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="YiN-Hs-MYu">
+                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZzQ-GC-bFe"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="n9m-Nv-fAy" firstAttribute="centerX" secondItem="Hkw-Dd-03p" secondAttribute="centerX" id="PIu-Pr-2P9"/>
-                            <constraint firstItem="mPj-7h-2N5" firstAttribute="top" secondItem="n9m-Nv-fAy" secondAttribute="bottom" constant="47.666666666666686" id="SBV-Ud-Ihw"/>
-                            <constraint firstItem="mPj-7h-2N5" firstAttribute="centerY" secondItem="Hkw-Dd-03p" secondAttribute="centerY" id="a5x-dk-Xpl"/>
-                            <constraint firstItem="mPj-7h-2N5" firstAttribute="centerX" secondItem="Hkw-Dd-03p" secondAttribute="centerX" id="k8g-kg-LVl"/>
-                            <constraint firstItem="9Pc-en-vDf" firstAttribute="top" secondItem="mPj-7h-2N5" secondAttribute="bottom" constant="50.333333333333314" id="uIC-YR-WaC"/>
-                            <constraint firstItem="9Pc-en-vDf" firstAttribute="centerX" secondItem="Hkw-Dd-03p" secondAttribute="centerX" id="zwc-qO-sd8"/>
+                            <constraint firstItem="ZzQ-GC-bFe" firstAttribute="trailing" secondItem="YiN-Hs-MYu" secondAttribute="trailing" id="DGG-Lj-scG"/>
+                            <constraint firstItem="YiN-Hs-MYu" firstAttribute="top" secondItem="ZzQ-GC-bFe" secondAttribute="top" id="aWV-Oy-BYJ"/>
+                            <constraint firstItem="ZzQ-GC-bFe" firstAttribute="bottom" secondItem="YiN-Hs-MYu" secondAttribute="bottom" id="fV8-LY-2Bw"/>
+                            <constraint firstItem="YiN-Hs-MYu" firstAttribute="leading" secondItem="ZzQ-GC-bFe" secondAttribute="leading" id="pX7-qA-yz0"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Прошлые вычисления" id="3lO-Az-Mc7"/>
                     <connections>
-                        <outlet property="calculationLabel" destination="mPj-7h-2N5" id="8Us-a5-uuX"/>
+                        <outlet property="tableView" destination="YiN-Hs-MYu" id="99F-xf-Ze6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VLQ-bn-i9K" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

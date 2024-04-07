@@ -44,6 +44,7 @@ class ViewController: UIViewController {
     
     var calculationHistory: [CalculationHistoryItem] = []
     var pressedCount = 0
+    var calculations: [(expression: [CalculationHistoryItem], result: Double)] = []
     
     
     lazy var numberFormatter: NumberFormatter = {
@@ -124,6 +125,7 @@ class ViewController: UIViewController {
         do {
             let result = try calculate()
             label.text = numberFormatter.string(from: NSNumber(value: result))
+            calculations.append((calculationHistory, result))
         } catch {
             label.text = "Ошибка"
         }
@@ -153,9 +155,7 @@ class ViewController: UIViewController {
         let calculationsListVC = sb.instantiateViewController(identifier: "CalculationsListViewController")
         if let vc = calculationsListVC as? CalculationsListViewController {
 //            vc.result = label.text
-            if pressedCount >= 1 {
-                vc.result = label.text
-            } else { vc.result = "NoData"}
+                vc.calculations = calculations
         }
         navigationController?.pushViewController(calculationsListVC, animated: true)
     }
