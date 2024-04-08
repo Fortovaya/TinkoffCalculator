@@ -50,6 +50,18 @@ class ViewController: UIViewController {
     
     private var piValue: Double = 0.0
     
+    private let alertView: AlertView = {
+        let screenBounds = UIScreen.main.bounds
+        let alertHeight: CGFloat = 100
+        let alertWidth: CGFloat = screenBounds.width - 40
+        let x: CGFloat = screenBounds.width / 2 - alertWidth / 2
+        let y: CGFloat =  screenBounds.height / 2 - alertHeight / 2
+        let alertFrame = CGRect (x: x, y: y, width: alertWidth, height: alertHeight)
+        let alertView = AlertView(frame: alertFrame)
+        
+        return alertView
+    }()
+    
     
     lazy var numberFormatter: NumberFormatter = {
         let numberFormatter = NumberFormatter()
@@ -74,6 +86,16 @@ class ViewController: UIViewController {
         historyButton.accessibilityIdentifier = "historyButton"
         resetLabelText()
         calculations = calculationHistoryStorage.loadHistory()
+        
+        view.addSubview(alertView)
+        alertView.alpha = 0
+        alertView.alertText = "Вы нашли пасхалку!"
+        
+        view.subviews.forEach {
+            if type(of: $0) == UIButton.self {
+                $0.layer.cornerRadius = 45
+            }
+        }
     }
 
 // MARK: - метод нажатия кнопок и отражение в label
@@ -92,6 +114,10 @@ class ViewController: UIViewController {
         label.text?.append(buttonText) }
         
         pressedCount += 1
+        
+        if label.text == "3,141592" {
+            animateAlert()
+        }
         
         print(buttonText)
     }
@@ -209,6 +235,41 @@ class ViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
+// анимация
+    func animateAlert(){
+        
+        if !view.contains(alertView){ // при повторном вводе данных анимация появляется повторно
+            alertView.alpha = 0
+            alertView.center = view.center
+            view.addSubview(alertView)
+        }
+        
+        UIView.animateKeyframes(withDuration: 2.0, delay: 0.5){
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5){
+                self.alertView.alpha = 1
+            }
+            UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5){
+                var newCenter = self.label.center
+                newCenter.y -= self.alertView.bounds.height
+                self.alertView.center = newCenter
+            }
+        }
+        
+        
+/* смещение объекта
+ 
+        UIView.animate(withDuration: 0.5){
+            self.alertView.alpha = 1
+        }
+        
+        UIView.animate(withDuration: 0.5, delay: 0.5){
+                var newCenter = self.label.center
+                newCenter.y -= self.alertView.bounds.height
+                self.alertView.center = newCenter
+        } 
+ */
+        
+    }
 }
 
 
