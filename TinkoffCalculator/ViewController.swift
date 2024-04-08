@@ -7,6 +7,14 @@
 
 import UIKit
 
+protocol LongPressViewProtocol {
+    var shared: UIView { get }
+    
+    func startAnimation()
+    func stopAnimation()
+}
+
+
 enum CalculationError: Error {
     case dividedByZero
 }
@@ -118,7 +126,7 @@ class ViewController: UIViewController {
         if label.text == "3,141592" {
             animateAlert()
         }
-        
+        sender.animateTap()
         print(buttonText)
     }
     
@@ -190,8 +198,10 @@ class ViewController: UIViewController {
             calculationHistoryStorage.setHistory(calculation: calculations)
         } catch {
             label.text = "Ошибка"
+            label.shake()
         }
         calculationHistory.removeAll()
+        animateBackground()
     }
     
     func calculate () throws -> Double {
@@ -268,6 +278,52 @@ class ViewController: UIViewController {
                 self.alertView.center = newCenter
         } 
  */
+        
+    }
+    
+    func animateBackground(){
+        let animation = CABasicAnimation(keyPath: "backgroundColor")
+        animation.duration = 1
+        animation.fromValue = UIColor.white.cgColor
+        animation.toValue = UIColor.blue.cgColor
+        
+        view.layer.add(animation, forKey: "backgroundColor")
+        view.layer.backgroundColor = UIColor.blue.cgColor // после анимации цвет фона остается тот который указали в строке кода
+    }
+    
+}
+
+extension UILabel {
+    func shake() {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.05
+        animation.repeatCount = 5
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: center.x - 5, y: center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: center.x + 5, y: center.y))
+        
+        layer.add(animation, forKey: "position")
+    }
+}
+
+
+// анимация масштабирования объекта
+
+extension UIButton {
+    func animateTap(){
+        let scaleAnimation = CAKeyframeAnimation(keyPath: "transform.scale")
+        scaleAnimation.values = [1, 0.9, 1] // изменение масштаба
+        scaleAnimation.keyTimes = [0, 0.2, 1]
+        
+        let opacityAnimation = CAKeyframeAnimation(keyPath: "opacity")
+        opacityAnimation.values = [0.4, 0.8, 1] // изменение прозрачности
+        opacityAnimation.keyTimes = [0, 0.2, 1]
+        
+        let animationGroup = CAAnimationGroup() // группировка анимаций
+        animationGroup.duration = 1.5
+        animationGroup.animations = [scaleAnimation, opacityAnimation]
+        
+        layer.add(animationGroup, forKey: "groupAnimation")
         
     }
 }
